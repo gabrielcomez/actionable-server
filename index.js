@@ -1,16 +1,19 @@
 const express = require("express");
-const cors = require("cors");
-const eventRoute = require("./src/Events/router");
-
-const port = process.env.PORT || 4000;
 const app = express();
-const parserMiddleware = express.json();
-const corsMiddleware = cors();
+const port = process.env.PORT || 4000;
 
+const cors = require("cors");
+const corsMiddleware = cors();
 app.use(corsMiddleware);
+
+const parserMiddleware = express.json();
 app.use(parserMiddleware);
 
+const eventRoute = require("./src/Events/router");
 app.use(eventRoute);
+
+const userRoute = require("./src/User/model");
+app.use(userRoute);
 
 app.listen(port, () => {
   console.log(`server at port ${port}`);
