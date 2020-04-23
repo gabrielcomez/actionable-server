@@ -12,7 +12,7 @@ app.use(parserMiddleware);
 const eventRoute = require("./src/Events/router");
 app.use(eventRoute);
 
-const userRoute = require("./src/User/model");
+const userRoute = require("./src/User/router");
 app.use(userRoute);
 
 app.listen(port, () => {
