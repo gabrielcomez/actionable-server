@@ -6,7 +6,7 @@ const User = require("./model");
 const router = new Router();
 
 router.post("/user", async (request, response) => {
-  console.log("request body", request.body);
+  console.log(">>>request.body @user POST", request.body);
   if (!request.body.email) {
     return response.status(400).send("Missing email");
   } else if (!request.body.password) {
@@ -58,7 +58,9 @@ router.post("/signin", async (request, response) => {
 
   if (correctPassword) {
     const token = toJWT({ id: user.id });
-    return response.status(200).send({ token: token, name: user.name });
+    return response
+      .status(200)
+      .send({ id: user.id, token: token, name: user.name });
   }
 });
 
