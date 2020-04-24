@@ -20,7 +20,6 @@ router.post("/user", async (request, response) => {
       ...request.body,
       password: hashedPassword,
     });
-
     response.status(201).send("User created");
   } catch (error) {
     console.log(error.name);
