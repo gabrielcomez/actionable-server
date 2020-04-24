@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../../db");
+const User = require("../User/model");
 
 const Goal = sequelize.define("goal", {
   name: {

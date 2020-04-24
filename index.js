@@ -15,6 +15,9 @@ app.use(eventRoute);
 const userRoute = require("./src/User/router");
 app.use(userRoute);
 
+const goalsRoute = require("./src/Goals/router");
+app.use(goalsRoute);
+
 app.listen(port, () => {
   console.log(`server at port ${port}`);
 });
