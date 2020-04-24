@@ -11,6 +11,10 @@ const Goal = sequelize.define("goal", {
     type: Sequelize.DATE,
     allowNull: false,
   },
+  eventId: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
 });
 
 Goal.belongsTo(User);
