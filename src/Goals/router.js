@@ -8,10 +8,7 @@ router.post("/goal", auth, async (request, response, next) => {
   try {
     const newGoal = { ...request.body, userId: request.user.dataValues.id };
     const goal = await Goal.create(newGoal);
-    console.log(
-      ">>>request.user.dataValues.id @goalRouter",
-      request.user.dataValues.id
-    );
+
     response.status(201).send(goal);
   } catch (error) {
     next(error);
@@ -29,13 +26,5 @@ router.get("/goal", async (request, response) => {
     })
     .catch((error) => next(error));
 });
-
-// router.get("/goals/:id", (request, response, next) => {
-//   Goal.findByPk(request.params.id)
-//     .then((goals) => {
-//       response.send(goals);
-//     })
-//     .catch(next);
-// });
 
 module.exports = router;
