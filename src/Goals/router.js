@@ -6,7 +6,7 @@ const router = new Router();
 
 router.post("/goal/:eventId", auth, async (request, response, next) => {
   try {
-    console.log(">>>goal adding response", response);
+    // console.log(">>>goal adding response", response);
 
     const newGoal = {
       ...request.body,
@@ -21,17 +21,16 @@ router.post("/goal/:eventId", auth, async (request, response, next) => {
 });
 
 router.get("/goal/:eventId", auth, async (request, response) => {
-  console.log(">>>request @goalsRouter GET", request.user.dataValues.id);
+  // console.log(">>>request @goalsRouter GET", request.user.dataValues.id);
+  try {
+    const goalsById = await Goal.findAll({
+      where: { userId: request.user.dataValues.id },
+    });
 
-  Goal.findAll({ where: { userId: request.user.dataValues.id } })
-    .then((goals) => {
-      if (!goals) {
-        response.status(404).send("Oops, no goals here!").end();
-      } else {
-        return response.send(goals);
-      }
-    })
-    .catch((error) => next(error));
+    response.status(201).send(goalsById);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;
