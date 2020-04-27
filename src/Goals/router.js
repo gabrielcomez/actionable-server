@@ -20,7 +20,7 @@ router.post("/goal/:eventId", auth, async (request, response, next) => {
   }
 });
 
-router.get("/goal/:eventId", auth, async (request, response) => {
+router.get("/goal", auth, async (request, response) => {
   // console.log(">>>request @goalsRouter GET", request.user.dataValues.id);
   try {
     const goalsById = await Goal.findAll({
@@ -28,6 +28,22 @@ router.get("/goal/:eventId", auth, async (request, response) => {
     });
 
     response.status(201).send(goalsById);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/goal/:eventId", auth, async (request, response) => {
+  try {
+    const goalById = await Goal.findOne({
+      where: {
+        eventId: request.params.eventId,
+      },
+    });
+    console.log(">>>goals router userID", request.user.dataValues.id);
+
+    console.log(">>>goalById @goalsRouter", goalById);
+    response.status(201).send(goalById);
   } catch (error) {
     next(error);
   }

@@ -7,6 +7,9 @@ const Goal = sequelize.define("goal", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  city: {
+    type: Sequelize.STRING,
+  },
   date: {
     type: Sequelize.DATE,
     allowNull: false,
