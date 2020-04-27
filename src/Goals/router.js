@@ -4,7 +4,7 @@ const Goal = require("./model");
 
 const router = new Router();
 
-router.post("/goal/:eventId", auth, async (request, response, next) => {
+router.post("/goal/:eventId", auth, async (request, response) => {
   try {
     // console.log(">>>goal adding response", response);
 
@@ -37,6 +37,7 @@ router.get("/goal/:eventId", auth, async (request, response) => {
   try {
     const goalById = await Goal.findOne({
       where: {
+        userId: request.user.dataValues.id,
         eventId: request.params.eventId,
       },
     });
@@ -49,11 +50,21 @@ router.get("/goal/:eventId", auth, async (request, response) => {
   }
 });
 
-module.exports = router;
+router.delete("/goal/:eventId", auth, async (request, response) => {
+  try {
+    const eventGoal = await Goal.findOne({
+      where: {
+        userId: request.user.dataValues.id,
+        eventId: request.params.eventId,
+      },
+    });
 
-// /* DELETE individual article. */
-// router.delete("/goal", auth, async (request, response) => {
-//   Goal.findByPk(request.body.eventId).then((goal) => {
-//     goal.destroy();
-//   });
-// });
+    await eventGoal.destroy();
+
+    response.status(201).send("goal deleted");
+  } catch (error) {
+    next(error);
+  }
+});
+
+module.exports = router;
