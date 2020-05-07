@@ -1,10 +1,9 @@
 const { Router } = require("express");
 const router = new Router();
 const axios = require("axios");
+const apiKey = require("../../config.js");
 
 require("tls").DEFAULT_MIN_VERSION = "TLSv1"; //API node version
-
-const apiKey = "app_key=JgtjrXBpwvHSjN5b";
 
 router.get("/category", async (req, res) => {
   const response = await axios(
@@ -21,7 +20,7 @@ router.get("/events/:location", async (req, res) => {
   const response = await axios(
     `https://api.eventful.com/json/events/search\?${apiKey}\&location=${req.params.location}`
   );
-  // console.log("response.data @event router", response.data.events.event);
+  // console.log("response.data @event router", response.data);
   res.send(response.data.events.event);
 });
 
