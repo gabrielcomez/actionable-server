@@ -5,7 +5,6 @@ require("dotenv").config();
 
 const apiKey = process.env.APP_KEY;
 
-console.log(">>>>>>>>>>>>apiKey", apiKey);
 require("tls").DEFAULT_MIN_VERSION = "TLSv1"; //API node version
 
 router.get("/category", async (req, res) => {
@@ -23,7 +22,7 @@ router.get("/events/:location", async (req, res) => {
   const response = await axios(
     `https://api.eventful.com/json/events/search\?app_key=${apiKey}\&location=${req.params.location}`
   );
-  console.log("response.data @event router", response.data);
+  // console.log("response.data @event router", response.data);
   res.send(response.data.events.event);
 });
 
