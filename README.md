@@ -1,9 +1,9 @@
-# actionable // server-site  🏋️
-Actionable lets you take a deeper dive in your personal interests!
+# actionable 🏋️
+This is the server site for actionable, an app that lets you take a deeper dive in your personal interests!
 
-#### 🤩 Check the client side repo https://github.com/gabrielcomez/actionable-client 
+#### 🤩 Check the client side repo https://github.com/gabrielcomez/actionable-client 🤩
 
-##### Learning in the process 📖💻
+##### Learning in the process 📖
 
 This app was developed as my portfolio project after completing the Codaisseur Academy in Amsterdam, the Netherlands 💻 
 
