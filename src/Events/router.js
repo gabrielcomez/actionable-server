@@ -25,7 +25,7 @@ router.get("/events/:location", async (req, res) => {
     const response = await axios(
       `https://api.eventful.com/json/events/search\?app_key=${apiKey}\&location=${req.params.location}`
     );
-    // console.log("response.data @event router", response.data);
+    console.log("response.data @event router", response.data);
     res.send(response.data.events.event);
   } catch (error) {
     next(error);
